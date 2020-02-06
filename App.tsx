@@ -13,6 +13,7 @@ import {Text} from 'react-native';
 import store from './src/store/index';
 import {Provider} from 'react-redux';
 import Config from 'react-native-config';
+import AppContainer from './src/navigation/index';
 
 const App = () => {
   useEffect(() => {
@@ -21,7 +22,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Text>App</Text>
+      <AppContainer />
     </Provider>
   );
 };
