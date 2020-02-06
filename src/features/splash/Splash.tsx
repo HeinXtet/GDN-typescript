@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Grid, Col, Header} from 'native-base';
 import {RootState} from 'typesafe-actions';
-import {addTodo, loadTodosAsync, saveTodosAsync} from '../login/actions';
+import {addTodo, loadTodosAsync, saveTodosAsync} from '../auth/actions';
 import {connect, ConnectedProps} from 'react-redux';
 import {NavigationScreenProp} from 'react-navigation';
 

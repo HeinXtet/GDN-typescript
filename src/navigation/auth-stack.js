@@ -2,19 +2,32 @@ import {
   createStackNavigator,
   StackViewTransitionConfigs,
 } from 'react-navigation-stack';
-import {Login} from '../features';
+import React from 'react';
+import {Login, SignUp, ForgotPassword} from '../features';
+import {Colors, NavigationStyle} from '../styles';
 
-export const AuthStack = createStackNavigator(
-  {
-    Login: {
-      screen: Login,
-      navigationOptions: {
-        header: 'null',
-      },
+export const AuthStack = createStackNavigator({
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      header: null,
+      title: null,
     },
   },
-  {
-    mode: 'modal',
-    headerMode: 'none',
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: {
+      ...NavigationStyle.navigationOptions,
+      headerTitle: 'Sign Up',
+      headerBackTitle: null,
+      headerTruncatedBackTitle: null,
+    },
   },
-);
+  ForgotPassword: {
+    screen: ForgotPassword,
+    navigationOptions: {
+      ...NavigationStyle.navigationOptions,
+      headerTitle: 'Forgot Password',
+    },
+  },
+});
