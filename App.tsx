@@ -17,7 +17,7 @@ import AppContainer from './src/navigation/index';
 
 const App = () => {
   useEffect(() => {
-    console.log('Sheme ' + Config.BASE_URL);
+    console.log('IP Stack API ' + Config.IP_STACK_API_KEY);
   }, []);
 
   return (

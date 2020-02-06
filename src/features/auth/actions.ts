@@ -1,5 +1,6 @@
-import {Todo} from 'MyModels';
-import {createAction, createAsyncAction} from 'typesafe-actions';
+import { Todo } from 'MyModels';
+
+import { createAction, createAsyncAction } from 'typesafe-actions';
 
 export const addTodo = createAction('ADD_TODO', (title: string) => ({
   id: '23',

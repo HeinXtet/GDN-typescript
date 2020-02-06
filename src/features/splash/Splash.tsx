@@ -1,23 +1,23 @@
 import React from 'react';
 import {Container, Grid, Col, Header} from 'native-base';
 import {RootState} from 'typesafe-actions';
-import {addTodo, loadTodosAsync, saveTodosAsync} from '../auth/actions';
 import {connect, ConnectedProps} from 'react-redux';
 import {NavigationScreenProp} from 'react-navigation';
 
 import {NavigationStackProp} from 'react-navigation-stack';
+import {ImageBackground, Image} from 'react-native';
+import {SPLASH_BG, LOGO_WHITE} from '../../images';
+import {Styles} from '../../styles';
+import {checkAvailableIp, getMasterData} from './actions';
 
 const mapStateToProps = (state: RootState) => ({
-  todo: state.login,
+  ip: state.ip,
 });
 
 const dispatchProps = {
-  addTodo: addTodo,
-  loadTodos: loadTodosAsync.request,
-  saveTodos: saveTodosAsync.request,
+  checkIp: checkAvailableIp.request,
+  getMasterData: getMasterData.request,
 };
-
-// Menlo, Monaco, 'Courier New', monospace,'Consolas'
 
 const connector = connect(mapStateToProps, dispatchProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -32,16 +32,18 @@ class Splash extends React.Component<Props> {
     setTimeout(() => {
       this.props.navigation.navigate('Login');
     }, 3000);
+
+    this.props.getMasterData(undefined, undefined);
   }
 
   render() {
+    console.log('Splash Props ' + JSON.stringify(this.props.ip));
     return (
-      <Container>
-        <Header />
-        <Grid>
-          <Col style={{backgroundColor: '#635DB7', height: 200}}></Col>
-          <Col style={{backgroundColor: '#00CE9F', height: 200}}></Col>
-        </Grid>
+      <Container
+        style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ImageBackground source={SPLASH_BG} style={Styles.fullScreenStatic} />
+
+        <Image source={LOGO_WHITE} />
       </Container>
     );
   }
