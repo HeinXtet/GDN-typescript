@@ -34,7 +34,6 @@ const checkAvailableCountry: Epic<
               default_currency: 'sgd',
             };
             let countries = action.payload.data.countries;
-
             console.log(
               'check ip payload ' + JSON.stringify(countries.toString()),
             );
@@ -63,7 +62,7 @@ const checkAvailableCountry: Epic<
       ),
     ),
   );
-  
+
 const getMasterDataEpic: Epic<RootAction, RootAction, RootState, Services> = (
   action$,
   state$,

@@ -51,6 +51,8 @@
     <string>Assistant-Regular.ttf</string>
     <string>Assistant-Bold.ttf</string>
     <string>MaterialCommunityIcons.ttf</string>
+    <string>SourceSansPro-Regular.ttf</string>
+    <string>SourceSansPro-Bold.ttf</string>
   </array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

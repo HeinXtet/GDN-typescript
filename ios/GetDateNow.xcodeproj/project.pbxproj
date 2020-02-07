@@ -21,6 +21,12 @@
 		2DCD954D1E0B4F2C00145EB5 /* GetDateNowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GetDateNowTests.m */; };
 		98C9D660C4334C9340DC8528 /* libPods-GetDateNow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0441B4A2054EBF1F52E53046 /* libPods-GetDateNow.a */; };
 		B8DBF91E8DE0393E1D4D1388 /* libPods-GetDateNowTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAF7FEDCA310ED953BD68D9 /* libPods-GetDateNowTests.a */; };
+		EE05F50623ED1A0200067E23 /* SourceSansPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE05F50323ED1A0200067E23 /* SourceSansPro-Black.ttf */; };
+		EE05F50723ED1A0200067E23 /* SourceSansPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE05F50323ED1A0200067E23 /* SourceSansPro-Black.ttf */; };
+		EE05F50823ED1A0200067E23 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE05F50423ED1A0200067E23 /* SourceSansPro-Bold.ttf */; };
+		EE05F50923ED1A0200067E23 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE05F50423ED1A0200067E23 /* SourceSansPro-Bold.ttf */; };
+		EE05F50A23ED1A0200067E23 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE05F50523ED1A0200067E23 /* SourceSansPro-Regular.ttf */; };
+		EE05F50B23ED1A0200067E23 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE05F50523ED1A0200067E23 /* SourceSansPro-Regular.ttf */; };
 		EE2977A023EBC1E600722E6C /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EE29779F23EBC1E600722E6C /* Config.xcconfig */; };
 		EE6740ED23EBCD930074E7FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		EE6740EE23EBCD930074E7FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -70,6 +76,9 @@
 		D7F820A707D7D49A34B34181 /* Pods-GetDateNow-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetDateNow-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GetDateNow-tvOSTests/Pods-GetDateNow-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EE05F50323ED1A0200067E23 /* SourceSansPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Black.ttf"; sourceTree = "<group>"; };
+		EE05F50423ED1A0200067E23 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		EE05F50523ED1A0200067E23 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		EE29779F23EBC1E600722E6C /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		EE6740FA23EBCD930074E7FC /* GetDateNow-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GetDateNow-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6740FB23EBCD930074E7FC /* GetDateNow copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GetDateNow copy-Info.plist"; path = "/Users/heinhtet/Projects/Me/GetDateNow/ios/GetDateNow copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -178,6 +187,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EE05F50323ED1A0200067E23 /* SourceSansPro-Black.ttf */,
+				EE05F50423ED1A0200067E23 /* SourceSansPro-Bold.ttf */,
+				EE05F50523ED1A0200067E23 /* SourceSansPro-Regular.ttf */,
 				13B07FAE1A68108700A75B9A /* GetDateNow */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* GetDateNowTests */,
@@ -378,9 +390,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE05F50623ED1A0200067E23 /* SourceSansPro-Black.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				EE05F50823ED1A0200067E23 /* SourceSansPro-Bold.ttf in Resources */,
 				EE2977A023EBC1E600722E6C /* Config.xcconfig in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				EE05F50A23ED1A0200067E23 /* SourceSansPro-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,9 +418,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE05F50723ED1A0200067E23 /* SourceSansPro-Black.ttf in Resources */,
 				EE6740F223EBCD930074E7FC /* Images.xcassets in Resources */,
+				EE05F50923ED1A0200067E23 /* SourceSansPro-Bold.ttf in Resources */,
 				EE6740F323EBCD930074E7FC /* Config.xcconfig in Resources */,
 				EE6740F423EBCD930074E7FC /* LaunchScreen.xib in Resources */,
+				EE05F50B23ED1A0200067E23 /* SourceSansPro-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

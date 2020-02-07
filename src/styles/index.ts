@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
 
 const Colors = {
   colorPrimary: 'pink',
@@ -24,9 +24,64 @@ const Styles = StyleSheet.create({
   fullScreenStatic: {
     position: 'absolute',
     height: HEIGHT,
-    backgroundColor : Colors.colorPrimary,
+    backgroundColor: Colors.colorPrimary,
     width: WIDTH,
   },
 });
 
-export {Colors, NavigationStyle,Styles};
+const Static = StyleSheet.create({
+  right: {
+    position: 'absolute',
+    right: 16,
+  },
+  left: {
+    position: 'absolute',
+    left: 16,
+  },
+});
+
+const ViewStyles = StyleSheet.create({
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
+});
+
+const AppTextStyle = StyleSheet.create({
+  baseText: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SourceSansPro-Regular',
+      },
+      android: {
+        fontFamily: 'source_sans_pro_regular',
+      },
+    }),
+    fontSize: 16,
+  },
+  heading: {
+    fontSize: 16,
+  },
+  label: {
+    fontSize: 16,
+  },
+  subLabel: {
+    fontSize: 14,
+  },
+
+  headingText: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'SourceSansPro-Bold',
+      },
+      android: {
+        fontFamily: 'source_sans_pro_bold',
+      },
+    }),
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});
+
+export {Colors, NavigationStyle, Styles, AppTextStyle};

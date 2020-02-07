@@ -1,14 +1,19 @@
 import React from 'react';
-import {Container, Grid, Col, Header} from 'native-base';
+import {Container, Card, CardItem} from 'native-base';
 import {RootState} from 'typesafe-actions';
 import {connect, ConnectedProps} from 'react-redux';
 import {NavigationScreenProp} from 'react-navigation';
-
 import {NavigationStackProp} from 'react-navigation-stack';
-import {ImageBackground, Image} from 'react-native';
+import {ImageBackground, Animated, StyleSheet, View} from 'react-native';
 import {SPLASH_BG, LOGO_WHITE} from '../../images';
 import {Styles} from '../../styles';
 import {checkAvailableIp, getMasterData} from './actions';
+import {Label} from '../../components';
+
+interface State {
+  valueYForLog: Animated.Value;
+  valueXForErrorCard: Animated.Value;
+}
 
 const mapStateToProps = (state: RootState) => ({
   ip: state.ip,
@@ -27,26 +32,93 @@ export interface NavigationProps extends NavigationScreenProp<{}> {
 }
 type Props = PropsFromRedux & NavigationProps;
 
-class Splash extends React.Component<Props> {
+class Splash extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      valueYForLog: new Animated.Value(0),
+      valueXForErrorCard: new Animated.Value(-1000),
+    };
+  }
+
   componentDidMount() {
-    setTimeout(() => {
-      this.props.navigation.navigate('Login');
-    }, 3000);
+    // setTimeout(() => {
+    //   this.props.navigation.navigate('Login');
+    // }, 3000);
 
     this.props.getMasterData(undefined, undefined);
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.ip.errorInCheckAvailableIp != null) {
+      this.startLogoYAnimate();
+    } else if (this.props.ip.successInCheckAvailableIp != null) {
+      this.props.navigation.navigate('Login');
+    }
+  }
+
+  startLogoYAnimate() {
+    Animated.parallel([
+      Animated.timing(this.state.valueYForLog, {
+        toValue: -50,
+        useNativeDriver: true,
+        duration: 1000,
+      }),
+      Animated.timing(this.state.valueXForErrorCard, {
+        toValue: 0,
+        useNativeDriver: true,
+        duration: 1000,
+      }),
+    ]).start();
+  }
+
+  renderErrorMessageCard = () => {
+    return (
+      <Animated.View
+        style={[{transform: [{translateX: this.state.valueXForErrorCard}]}]}>
+        <Card style={[styles.cardStyle]}>
+          <CardItem>
+            <View style={{padding: 2}}>
+              <Label
+                text={'Sorry!'}
+                isHeading
+                style={{color: 'red', paddingBottom: 8, fontSize: 20}}
+                center
+              />
+              <Label
+                text={this.props.ip.errorInCheckAvailableIp}
+                center
+                isHeading
+              />
+            </View>
+          </CardItem>
+        </Card>
+      </Animated.View>
+    );
+  };
+
   render() {
-    console.log('Splash Props ' + JSON.stringify(this.props.ip));
     return (
       <Container
         style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <ImageBackground source={SPLASH_BG} style={Styles.fullScreenStatic} />
-
-        <Image source={LOGO_WHITE} />
+        <Animated.Image
+          source={LOGO_WHITE}
+          style={{
+            transform: [{translateY: this.state.valueYForLog}],
+          }}
+        />
+        {this.renderErrorMessageCard()}
       </Container>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  cardStyle: {
+    borderRadius: 16,
+  },
+});
 
 export default connect(mapStateToProps, dispatchProps)(Splash);
