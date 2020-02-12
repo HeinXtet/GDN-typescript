@@ -4,8 +4,10 @@ import {Input, Container} from '../../../../components';
 import {Button} from '../../../../components/Button';
 import {Label} from '../../../../components/Label';
 import {Colors} from '../../../../styles';
+import {NavigationStackProp} from 'react-navigation-stack';
 interface LoginFormProps {
   onPressLogin: (email: string, password: string) => void;
+  navigationProps: NavigationStackProp;
 }
 
 export const LoginForm = (props: LoginFormProps) => {
@@ -58,13 +60,17 @@ export const LoginForm = (props: LoginFormProps) => {
         <Label
           touchable
           text="Forgot Password"
-          onPress={() => {}}
+          onPress={() => {
+            props.navigationProps.navigate('ForgotPassword');
+          }}
           style={{color: 'white', padding: 8}}
         />
         <Label
           touchable
           text="Sign Up"
-          onPress={() => {}}
+          onPress={() => {
+            props.navigationProps.navigate('SignUp');
+          }}
           style={{color: 'white', padding: 8}}
         />
       </View>

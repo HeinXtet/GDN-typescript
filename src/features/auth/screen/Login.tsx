@@ -16,13 +16,34 @@ import {LoginForm} from './components/LoginForm';
 import {Label} from '../../../components/Label';
 import {SperateOr} from './components/SperateOr';
 import {TernAndConditionButton} from './components/TermAndConditionButton';
+import {LoginManager} from 'react-native-fbsdk';
+
 export interface NavigationProps extends NavigationScreenProp<{}> {
   navigation: NavigationStackProp;
 }
 class Login extends React.Component<NavigationProps> {
+  dispatchFacebookLogin = () => {
+    LoginManager.logInWithPermissions(['public_profile']).then(
+      function(result) {
+        if (result.isCancelled) {
+          console.log('Login cancelled');
+        } else {
+          console.log(
+            'Login success with permissions: ' +
+              result.grantedPermissions.toString(),
+          );
+        }
+      },
+      function(error) {
+        console.log('Login fail with error: ' + error);
+      },
+    );
+  };
+
   renderForm = () => {
     return (
       <LoginForm
+        navigationProps={this.props.navigation}
         onPressLogin={(email: string, password: string) => {
           console.log('call api to login ' + email + ' ' + password);
         }}
@@ -62,7 +83,9 @@ class Login extends React.Component<NavigationProps> {
 
   renderFacebookLoginButton = () => {
     return (
-      <Button style={styles.facebookLoginStyle}>
+      <Button
+        style={styles.facebookLoginStyle}
+        onPress={() => this.dispatchFacebookLogin()}>
         <Label
           style={{color: 'white', flex: 1, paddingLeft: 16}}
           text="Continues with Facebook"

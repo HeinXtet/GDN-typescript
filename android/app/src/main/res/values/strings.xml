@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GetDateNow</string>
+    <string name="facebook_app_id">1231314793737533</string>
+    <string name="fb_login_protocol_scheme">fb1231314793737533</string>
 </resources>
