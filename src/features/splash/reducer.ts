@@ -24,4 +24,4 @@ const checkIpReducer = combineReducers({
 });
 
 export default checkIpReducer;
-export type IpState = ReturnType<typeof checkIpReducer>;
+export type CommonState = ReturnType<typeof checkIpReducer>;

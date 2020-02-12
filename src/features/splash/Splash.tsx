@@ -43,10 +43,6 @@ class Splash extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    // setTimeout(() => {
-    //   this.props.navigation.navigate('Login');
-    // }, 3000);
-
     this.props.getMasterData(undefined, undefined);
   }
 

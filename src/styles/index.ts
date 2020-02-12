@@ -1,13 +1,13 @@
-import React from 'react';
-import {StyleSheet, Dimensions, Platform} from 'react-native';
+import {StyleSheet, Dimensions, Platform, ViewStyle} from 'react-native';
 
 const Colors = {
-  colorPrimary: 'pink',
+  colorPrimary: '#d61c5b',
   colorWhite: 'white',
+  colorFacebook: '#3b5998',
 };
 
-const HEIGHT = Dimensions.get('window').height;
-const WIDTH = Dimensions.get('window').width;
+export const HEIGHT = Dimensions.get('window').height;
+export const WIDTH = Dimensions.get('window').width;
 
 const NavigationStyle = {
   navigationOptions: {
@@ -84,4 +84,4 @@ const AppTextStyle = StyleSheet.create({
   },
 });
 
-export {Colors, NavigationStyle, Styles, AppTextStyle};
+export {Colors, NavigationStyle, Styles, AppTextStyle, ViewStyles};
