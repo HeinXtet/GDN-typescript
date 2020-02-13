@@ -13,33 +13,14 @@ import {
 import {Styles, Colors} from '../../../styles/index';
 import {SPLASH_BG, LOGO_WHITE} from '../../../images/index';
 import {LoginForm} from './components/LoginForm';
-import {Label} from '../../../components/Label';
 import {SperateOr} from './components/SperateOr';
+import {FacebookLoginButton} from './components/FacebookLoginButton';
 import {TernAndConditionButton} from './components/TermAndConditionButton';
-import {LoginManager} from 'react-native-fbsdk';
 
 export interface NavigationProps extends NavigationScreenProp<{}> {
   navigation: NavigationStackProp;
 }
 class Login extends React.Component<NavigationProps> {
-  dispatchFacebookLogin = () => {
-    LoginManager.logInWithPermissions(['public_profile']).then(
-      function(result) {
-        if (result.isCancelled) {
-          console.log('Login cancelled');
-        } else {
-          console.log(
-            'Login success with permissions: ' +
-              result.grantedPermissions.toString(),
-          );
-        }
-      },
-      function(error) {
-        console.log('Login fail with error: ' + error);
-      },
-    );
-  };
-
   renderForm = () => {
     return (
       <LoginForm
@@ -70,7 +51,9 @@ class Login extends React.Component<NavigationProps> {
                 style={Styles.fullScreenStatic}
               />
               {this.renderTopLogo()}
-              {this.renderFacebookLoginButton()}
+              <FacebookLoginButton
+                callback={token => console.log('token ' + token)}
+              />
               {this.renderViewLine()}
               {this.renderForm()}
               <TernAndConditionButton label={'T & C Privacy Policy'} />
@@ -80,23 +63,6 @@ class Login extends React.Component<NavigationProps> {
       </ScrollView>
     );
   }
-
-  renderFacebookLoginButton = () => {
-    return (
-      <Button
-        style={styles.facebookLoginStyle}
-        onPress={() => this.dispatchFacebookLogin()}>
-        <Label
-          style={{color: 'white', flex: 1, paddingLeft: 16}}
-          text="Continues with Facebook"
-        />
-        <Image
-          source={require('../../../images/facebook.png')}
-          style={{marginEnd: 16}}
-        />
-      </Button>
-    );
-  };
 
   renderViewLine = () => {
     return <SperateOr />;
@@ -111,12 +77,6 @@ const styles = StyleSheet.create({
   logoStyle: {
     marginTop: 32,
     alignSelf: 'center',
-  },
-  facebookLoginStyle: {
-    height: 55,
-    margin: 16,
-    marginTop: 24,
-    backgroundColor: Colors.colorFacebook,
   },
 });
 

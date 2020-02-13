@@ -1,11 +1,15 @@
 import React from 'react';
-// import {View} from 'react-native-animatable';
-import {ViewStyle, View, StyleProp} from 'react-native';
+import {View} from 'react-native-animatable';
+import {ViewStyle} from 'react-native';
 
 interface ContainerProps {
   children: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
+  style?: ViewStyle | Array<ViewStyle>;
 }
 export const Container = (props: ContainerProps) => {
-  return <View style={[props.style]}>{props.children}</View>;
+  return (
+    <View animation="fadeInUp" duration={500} style={[props.style]}>
+      {props.children}
+    </View>
+  );
 };

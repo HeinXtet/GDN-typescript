@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button as ButtonComponent} from 'native-base';
+import {Button as ButtonComponent, RnViewStyleProp} from 'native-base';
 import {Label} from './Label';
 import {StyleSheet} from 'react-native';
 
@@ -7,13 +7,19 @@ interface ButtonProps {
   backgroundColor: string;
   label: string;
   onPress: () => void;
+  labelColor?: string;
+  style?: RnViewStyleProp | Array<RnViewStyleProp>;
 }
 
 export const Button = (props: ButtonProps) => {
   return (
     <ButtonComponent rounded style={styles(props).core} onPress={props.onPress}>
       <Label
-        style={{color: 'white', textAlign: 'center', alignSelf: 'center'}}
+        style={{
+          color: props.labelColor ? props.labelColor : 'white',
+          textAlign: 'center',
+          alignSelf: 'center',
+        }}
         text={props.label}
       />
     </ButtonComponent>

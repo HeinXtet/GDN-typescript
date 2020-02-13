@@ -43,7 +43,8 @@ class Splash extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    this.props.getMasterData(undefined, undefined);
+    // this.props.getMasterData(undefined, undefined);
+    this.props.navigation.navigate('Login');
   }
 
   componentDidUpdate(prevProps: Props) {
