@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions, Platform, ViewStyle} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
 
 const Colors = {
   colorPrimary: '#d61c5b',
