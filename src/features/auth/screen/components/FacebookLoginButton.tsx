@@ -1,10 +1,9 @@
 import React from 'react';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import {Button, Image} from 'native-base';
+import {StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {Button} from 'native-base';
 import {Label} from '../../../../components/Label';
 import {Colors} from '../../../../styles';
-import {FACEBOOK, FACEBOOK_CIRCLE} from '../../../../images/index';
 interface FbLoginButtonProps {
   isCircle?: boolean;
   callback: (token: string) => void;
@@ -43,8 +42,13 @@ export const FacebookLoginButton = (props: FbLoginButtonProps) => {
 
 const renderCircleFbLogin = (props: FbLoginButtonProps) => {
   return (
-    <TouchableOpacity style={{marginTop: 16, marginBottom: 16}}>
-      <Image source={FACEBOOK_CIRCLE} style={styles.ivFacebook} />
+    <TouchableOpacity
+      onPress={() => dispatchFacebookLogin(props)}
+      style={{marginTop: 16, marginBottom: 16}}>
+      <Image
+        source={require('../../../../images/facebook_circle.png')}
+        style={styles.ivFacebook}
+      />
     </TouchableOpacity>
   );
 };
@@ -58,7 +62,10 @@ const renderFacebookLoginButton = (props: FbLoginButtonProps) => {
         style={{color: 'white', flex: 1, paddingLeft: 16}}
         text="Continues with Facebook"
       />
-      {/* <Image source={FACEBOOK} style={{marginEnd: 16}} /> */}
+      <Image
+        source={require('../../../../../src/images/facebook.png')}
+        style={{marginEnd: 16}}
+      />
     </Button>
   );
 };

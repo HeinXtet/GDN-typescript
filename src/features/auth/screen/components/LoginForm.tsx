@@ -42,7 +42,6 @@ export const LoginForm = (props: LoginFormProps) => {
           onPress={() => {
             if (isValid()) {
               props.onPressLogin(email, password);
-              //   props.onPressLogin(email, password);
               console.log('email ' + email + 'password ' + password);
             }
           }}
