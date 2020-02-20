@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {Input, Container} from '../../../../components';
-import {Button} from '../../../../components/Button';
-import {Label} from '../../../../components/Label';
-import {Colors} from '../../../../styles';
+import {Input, Container} from '..';
+import {Button} from '../Button';
+import {Label} from '../Label';
+import {Colors} from '../../styles';
 import {NavigationStackProp} from 'react-navigation-stack';
 interface LoginFormProps {
   onPressLogin: (email: string, password: string) => void;
@@ -29,10 +29,12 @@ export const LoginForm = (props: LoginFormProps) => {
     <Container>
       <View style={{marginLeft: 16, marginEnd: 16}}>
         <Input
+          returnKeyType={'next'}
           onChange={email => setEmail(email.toString())}
           placeholder={'Email'}
         />
         <Input
+          returnKeyType={'done'}
           onChange={pass => setPassword(pass.toString())}
           placeholder={'Password'}
         />

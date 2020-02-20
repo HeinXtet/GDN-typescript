@@ -8,7 +8,7 @@ interface ContainerProps {
 }
 export const Container = (props: ContainerProps) => {
   return (
-    <View animation="fadeInUp" duration={500} style={[props.style]}>
+    <View animation="fadeIn" duration={1000} style={[props.style]}>
       {props.children}
     </View>
   );

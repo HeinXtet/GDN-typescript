@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Label} from '../../../../components/Label';
+import {Label} from '../Label';
 
 export const SperateOr = () => {
   return (

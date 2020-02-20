@@ -12,10 +12,10 @@ import {
 } from 'react-native';
 import {Styles, Colors} from '../../../styles/index';
 import {SPLASH_BG, LOGO_WHITE} from '../../../images/index';
-import {LoginForm} from './components/LoginForm';
-import {SperateOr} from './components/SperateOr';
-import {FacebookLoginButton} from './components/FacebookLoginButton';
-import {TernAndConditionButton} from './components/TermAndConditionButton';
+import {LoginForm} from '../../../components/authornication/LoginForm';
+import {SperateOr} from '../../../components/authornication/SperateOr';
+import {FacebookLoginButton} from '../../../components/authornication/FacebookLoginButton';
+import {TernAndConditionButton} from '../../../components/authornication/TermAndConditionButton';
 
 export interface NavigationProps extends NavigationScreenProp<{}> {
   navigation: NavigationStackProp;
@@ -56,7 +56,10 @@ class Login extends React.Component<NavigationProps> {
               />
               {this.renderViewLine()}
               {this.renderForm()}
-              <TernAndConditionButton label={'T & C Privacy Policy'} />
+              <TernAndConditionButton
+                isAbsolute
+                label={'T & C Privacy Policy'}
+              />
             </SafeAreaView>
           </Container>
         </KeyboardAvoidingView>

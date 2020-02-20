@@ -5,14 +5,16 @@ import {
   ImageBackground,
   SafeAreaView,
   StyleSheet,
+  Platform,
 } from 'react-native';
 import {Container, Label} from '../../../components';
 import {SPLASH_BG} from '../../../images';
 import {Styles} from '../../../styles';
-import {TernAndConditionButton} from './components/TermAndConditionButton';
+import {TernAndConditionButton} from '../../../components/authornication/TermAndConditionButton';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {SperateOr} from './components/SperateOr';
-import {FacebookLoginButton} from './components/FacebookLoginButton';
+import {SperateOr} from '../../../components/authornication/SperateOr';
+import {FacebookLoginButton} from '../../../components/authornication/FacebookLoginButton';
+import {SignUpForm} from '../../../components/authornication/SignupForm';
 
 class SignUp extends React.Component {
   renderTopSocial = () => {
@@ -30,6 +32,7 @@ class SignUp extends React.Component {
       </Container>
     );
   };
+  keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0;
 
   render() {
     return (
@@ -37,9 +40,10 @@ class SignUp extends React.Component {
         contentContainerStyle={{
           flexGrow: 1,
         }}
-        style={{backgroundColor: Colors.colorPrimary}}
-        overScrollMode="never">
+        style={{backgroundColor: Colors.colorPrimary}}>
         <KeyboardAvoidingView
+          behavior="position"
+          keyboardVerticalOffset={this.keyboardVerticalOffset}
           style={{
             flex: 1,
           }}>
@@ -49,13 +53,15 @@ class SignUp extends React.Component {
                 source={SPLASH_BG}
                 style={Styles.fullScreenStatic}
               />
-
               {this.renderTopSocial()}
-
-              <TernAndConditionButton label={'T & C Privacy Policy'} />
+              <SignUpForm signUpPressed={() => {}} />
             </SafeAreaView>
           </Container>
         </KeyboardAvoidingView>
+        <TernAndConditionButton
+          isAbsolute={false}
+          label={'T & C Privacy Policy'}
+        />
       </ScrollView>
     );
   }

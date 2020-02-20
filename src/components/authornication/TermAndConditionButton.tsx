@@ -1,17 +1,18 @@
 import React from 'react';
 import {Button} from 'native-base';
-import {Label} from '../../../../components/Label';
+import {Label} from '../Label';
 
 interface TermProps {
   label: string;
+  isAbsolute?: boolean;
 }
 
 export const TernAndConditionButton = (props: TermProps) => {
   return (
     <Button
       style={{
-        position: 'absolute',
-        bottom: 24,
+        position: props.isAbsolute ? 'absolute' : null,
+        bottom: props.isAbsolute ? 24 : null,
         alignSelf: 'center',
         backgroundColor: 'transparent',
       }}>

@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import {Item, Input as TextInput} from 'native-base';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, ReturnKeyType, KeyboardType} from 'react-native';
+import {appFont} from '../styles';
 
 interface InputProps {
   placeholder: string;
+  returnKeyType?: ReturnKeyType;
   onChange: (text: String) => void;
   isSecureEntry?: boolean;
+  keyboardType?: KeyboardType;
 }
 
 export const Input = (props: InputProps) => {
@@ -23,12 +26,14 @@ export const Input = (props: InputProps) => {
         },
       ]}>
       <TextInput
+        returnKeyType={props.returnKeyType}
+        keyboardType={props.keyboardType}
         secureTextEntry={props.isSecureEntry}
         placeholder={props.placeholder}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         placeholderTextColor={'white'}
-        style={{color: 'white'}}
+        style={{...appFont, color: 'white'}}
         onChangeText={props.onChange}
       />
     </Item>

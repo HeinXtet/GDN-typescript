@@ -8,6 +8,13 @@ const Colors = {
 
 export const HEIGHT = Dimensions.get('window').height;
 export const WIDTH = Dimensions.get('window').width;
+export const margin16 = 16;
+export const margin8 = 8;
+
+const defaultContainerMargin = {
+  marginLeft: margin16,
+  marginRight: margin16,
+};
 
 const NavigationStyle = {
   navigationOptions: {
@@ -48,6 +55,15 @@ const ViewStyles = StyleSheet.create({
   },
 });
 
+const appFont = Platform.select({
+  ios: {
+    fontFamily: 'SourceSansPro-Regular',
+  },
+  android: {
+    fontFamily: 'source_sans_pro_regular',
+  },
+});
+
 const AppTextStyle = StyleSheet.create({
   baseText: {
     ...Platform.select({
@@ -84,4 +100,12 @@ const AppTextStyle = StyleSheet.create({
   },
 });
 
-export {Colors, NavigationStyle, Styles, AppTextStyle, ViewStyles};
+export {
+  Colors,
+  NavigationStyle,
+  Styles,
+  AppTextStyle,
+  ViewStyles,
+  defaultContainerMargin,
+  appFont,
+};
