@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "199373931232",
+    "firebase_url": "https://getdatenow-498c4.firebaseio.com",
+    "project_id": "getdatenow-498c4",
+    "storage_bucket": "getdatenow-498c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199373931232:android:8742c5949a05562c4c0685",
+        "android_client_info": {
+          "package_name": "com.getdatenow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199373931232-405tepnhds0lm2b0b9lgb3h48qe8n01o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0R7qgKsI8ml2V_CHgDOrZJAvantaK1wo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199373931232-405tepnhds0lm2b0b9lgb3h48qe8n01o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "199373931232-6oqlgts5i3e0v99u9slkkqqhfeg8ljth.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.deevvdd.GetDateNow-Dev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
