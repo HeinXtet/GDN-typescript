@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  ScrollView,
-  KeyboardAvoidingView,
   ImageBackground,
   SafeAreaView,
   StyleSheet,
@@ -15,6 +13,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {SperateOr} from '../../../components/authornication/SperateOr';
 import {FacebookLoginButton} from '../../../components/authornication/FacebookLoginButton';
 import {SignUpForm} from '../../../components/authornication/SignupForm';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 
 class SignUp extends React.Component {
   renderTopSocial = () => {
@@ -32,37 +31,25 @@ class SignUp extends React.Component {
       </Container>
     );
   };
-  keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0;
+  keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 20;
 
   render() {
     return (
-      <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-        }}
-        style={{backgroundColor: Colors.colorPrimary}}>
-        <KeyboardAvoidingView
-          behavior="position"
-          keyboardVerticalOffset={this.keyboardVerticalOffset}
-          style={{
-            flex: 1,
-          }}>
+      <Container>
+        <ImageBackground source={SPLASH_BG} style={Styles.fullScreenStatic} />
+        <KeyboardAwareScrollView style={{backgroundColor: Colors.colorPrimary}}>
           <Container style={{flex: 1}}>
             <SafeAreaView style={{flex: 1}}>
-              <ImageBackground
-                source={SPLASH_BG}
-                style={Styles.fullScreenStatic}
-              />
               {this.renderTopSocial()}
               <SignUpForm signUpPressed={() => {}} />
             </SafeAreaView>
           </Container>
-        </KeyboardAvoidingView>
-        <TernAndConditionButton
-          isAbsolute={false}
-          label={'T & C Privacy Policy'}
-        />
-      </ScrollView>
+          <TernAndConditionButton
+            isAbsolute={false}
+            label={'T & C Privacy Policy'}
+          />
+        </KeyboardAwareScrollView>
+      </Container>
     );
   }
 }

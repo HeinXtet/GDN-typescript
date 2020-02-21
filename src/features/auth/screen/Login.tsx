@@ -16,6 +16,7 @@ import {LoginForm} from '../../../components/authornication/LoginForm';
 import {SperateOr} from '../../../components/authornication/SperateOr';
 import {FacebookLoginButton} from '../../../components/authornication/FacebookLoginButton';
 import {TernAndConditionButton} from '../../../components/authornication/TermAndConditionButton';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 
 export interface NavigationProps extends NavigationScreenProp<{}> {
   navigation: NavigationStackProp;
@@ -34,36 +35,26 @@ class Login extends React.Component<NavigationProps> {
 
   render() {
     return (
-      <ScrollView
+      <KeyboardAwareScrollView
         contentContainerStyle={{
           flexGrow: 1,
         }}
         style={{backgroundColor: Colors.colorPrimary}}
         overScrollMode="never">
-        <KeyboardAvoidingView
-          style={{
-            flex: 1,
-          }}>
-          <Container>
-            <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
-              <ImageBackground
-                source={SPLASH_BG}
-                style={Styles.fullScreenStatic}
-              />
-              {this.renderTopLogo()}
-              <FacebookLoginButton
-                callback={token => console.log('token ' + token)}
-              />
-              {this.renderViewLine()}
-              {this.renderForm()}
-              <TernAndConditionButton
-                isAbsolute
-                label={'T & C Privacy Policy'}
-              />
-            </SafeAreaView>
-          </Container>
-        </KeyboardAvoidingView>
-      </ScrollView>
+        <Container>
+          <ImageBackground source={SPLASH_BG} style={Styles.fullScreenStatic} />
+
+          <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+            {this.renderTopLogo()}
+            <FacebookLoginButton
+              callback={token => console.log('token ' + token)}
+            />
+            {this.renderViewLine()}
+            {this.renderForm()}
+            <TernAndConditionButton isAbsolute label={'T & C Privacy Policy'} />
+          </SafeAreaView>
+        </Container>
+      </KeyboardAwareScrollView>
     );
   }
 

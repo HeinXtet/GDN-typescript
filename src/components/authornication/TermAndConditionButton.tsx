@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button} from 'native-base';
 import {Label} from '../Label';
+import {TouchableOpacity} from 'react-native';
 
 interface TermProps {
   label: string;
@@ -9,14 +9,16 @@ interface TermProps {
 
 export const TernAndConditionButton = (props: TermProps) => {
   return (
-    <Button
+    <TouchableOpacity
       style={{
+        paddingTop: 16,
+        paddingBottom: 16,
         position: props.isAbsolute ? 'absolute' : null,
-        bottom: props.isAbsolute ? 24 : null,
+        bottom: props.isAbsolute ? 8 : null,
         alignSelf: 'center',
         backgroundColor: 'transparent',
       }}>
       <Label style={{color: 'white'}} text={props.label} />
-    </Button>
+    </TouchableOpacity>
   );
 };

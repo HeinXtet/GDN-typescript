@@ -155,7 +155,7 @@ PODS:
     - React
   - react-native-safe-area-context (0.6.4):
     - React
-  - react-native-webview (8.1.1):
+  - react-native-webview (8.0.6):
     - React
   - React-RCTActionSheet (0.60.5):
     - React-Core (= 0.60.5)
@@ -180,16 +180,16 @@ PODS:
     - React-Core (= 0.60.5)
   - React-RCTWebSocket (0.60.5):
     - React-Core (= 0.60.5)
-  - RNFBApp (6.3.4):
+  - RNFBApp (6.3.3):
     - Firebase/Core (~> 6.13.0)
     - React
-  - RNGestureHandler (1.6.0):
+  - RNGestureHandler (1.5.6):
     - React
   - RNPermissions (2.0.9):
     - React
   - RNReanimated (1.7.0):
     - React
-  - RNScreens (2.0.0-beta.8):
+  - RNScreens (2.0.0-beta.2):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -344,10 +344,10 @@ SPEC CHECKSUMS:
   React-jsinspector: e08662d1bf5b129a3d556eb9ea343a3f40353ae4
   react-native-config: f2c2ae45625a068c35681a16b9bfb1ca58b0adc7
   react-native-fbsdk: c35d42169e64aaf66f01713c1e18d0674f7f6519
-  react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
+  react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
   react-native-maps: 6e499eee4eabf422ba8b6f94e993cc768bf35153
-  react-native-safe-area-context: 52342d2d80ea8faadd0ffa76d83b6051f20c5329
-  react-native-webview: 0ec2ca34f52e60892e4a9141508751588d45a518
+  react-native-safe-area-context: 042dfc9d4db17196841df962ba9497f6e7a5bd02
+  react-native-webview: e11b5d7da61ac3acee13f3ae3184d417f773c5d5
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90
   React-RCTAnimation: 359ba1b5690b1e87cc173558a78e82d35919333e
   React-RCTBlob: 5e2b55f76e9a1c7ae52b826923502ddc3238df24
@@ -358,11 +358,11 @@ SPEC CHECKSUMS:
   React-RCTText: b074d89033583d4f2eb5faf7ea2db3a13c7553a2
   React-RCTVibration: 2105b2e0e2b66a6408fc69a46c8a7fb5b2fdade0
   React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
-  RNFBApp: 7d4006751de8bb5cafa2e8d2e7d94ee250df81db
-  RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
-  RNPermissions: 2f74237e97b08beda01e914301e12524ddddf5b8
+  RNFBApp: 887ccc5840f93abad3202ff23eb0faf7bee4ac12
+  RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
+  RNPermissions: 6db7e0a4d94c9c02390d11020b1d3d187aaf77e5
   RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
-  RNScreens: d56b2da8367a56bbc9840e16d968339eb0ec7e7f
+  RNScreens: 5e4758109c6d35f9a009ce72af873df907548020
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 

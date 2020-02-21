@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {Text, TextStyle, StyleSheet} from 'react-native';
+import {Text, TextStyle, StyleSheet, TouchableOpacity} from 'react-native';
 import {AppTextStyle} from '../styles/index';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 interface LabelProps {
   text: String;
   center?: Boolean;

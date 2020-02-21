@@ -30,9 +30,9 @@ const NavigationStyle = {
 const Styles = StyleSheet.create({
   fullScreenStatic: {
     position: 'absolute',
-    height: HEIGHT,
+    height: '100%',
     backgroundColor: Colors.colorPrimary,
-    width: WIDTH,
+    width: '100%',
   },
 });
 
@@ -71,7 +71,7 @@ const AppTextStyle = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
       },
       android: {
-        fontFamily: 'source_sans_pro_regular',
+        fontFamily: 'source_sans_pro_regular.ttf',
       },
     }),
     fontSize: 16,

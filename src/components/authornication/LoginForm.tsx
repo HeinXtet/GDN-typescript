@@ -26,7 +26,7 @@ export const LoginForm = (props: LoginFormProps) => {
   };
 
   return (
-    <Container>
+    <Container style={{paddingBottom: 24}}>
       <View style={{marginLeft: 16, marginEnd: 16}}>
         <Input
           returnKeyType={'next'}
@@ -52,11 +52,11 @@ export const LoginForm = (props: LoginFormProps) => {
 
       <View
         style={{
-          marginTop: 16,
           flexDirection: 'row',
           justifyContent: 'space-between',
           marginLeft: 16,
           marginEnd: 16,
+          marginBottom: 24,
         }}>
         <Label
           touchable

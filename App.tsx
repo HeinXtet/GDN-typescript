@@ -9,11 +9,12 @@
  */
 
 import React, {useEffect} from 'react';
-import {Text} from 'react-native';
+import {Text, StatusBar} from 'react-native';
 import store from './src/store/index';
 import {Provider} from 'react-redux';
 import Config from 'react-native-config';
 import AppContainer from './src/navigation/index';
+import {Colors} from './src/styles';
 
 const App = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      <StatusBar backgroundColor={Colors.colorPrimary} />
       <AppContainer />
     </Provider>
   );
