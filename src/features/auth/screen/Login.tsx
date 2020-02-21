@@ -2,14 +2,7 @@ import React from 'react';
 import {Container, Button, View} from 'native-base';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {NavigationScreenProp} from 'react-navigation';
-import {
-  SafeAreaView,
-  ImageBackground,
-  Image,
-  StyleSheet,
-  ScrollView,
-  KeyboardAvoidingView,
-} from 'react-native';
+import {SafeAreaView, ImageBackground, Image, StyleSheet} from 'react-native';
 import {Styles, Colors} from '../../../styles/index';
 import {SPLASH_BG, LOGO_WHITE} from '../../../images/index';
 import {LoginForm} from '../../../components/authornication/LoginForm';
@@ -17,7 +10,7 @@ import {SperateOr} from '../../../components/authornication/SperateOr';
 import {FacebookLoginButton} from '../../../components/authornication/FacebookLoginButton';
 import {TernAndConditionButton} from '../../../components/authornication/TermAndConditionButton';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
-
+import crashlytics from '@react-native-firebase/crashlytics';
 export interface NavigationProps extends NavigationScreenProp<{}> {
   navigation: NavigationStackProp;
 }
@@ -32,6 +25,15 @@ class Login extends React.Component<NavigationProps> {
       />
     );
   };
+  forceCrash() {
+    crashlytics().log('Testing crash');
+    crashlytics().crash();
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.forceCrash();
+    }, 2000);
+  }
 
   render() {
     return (
