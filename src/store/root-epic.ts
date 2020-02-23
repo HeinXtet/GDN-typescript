@@ -1,5 +1,5 @@
 import {combineEpics, Epic} from 'redux-observable';
-import {loadTodosEpic} from '../features/auth/epics';
+import {loadTodosEpic, loginWithEmailEpic} from '../features/auth/epics';
 import {
   checkAvailableCountry,
   getMasterDataEpic,
@@ -7,6 +7,7 @@ import {
 
 export default combineEpics<Epic>(
   loadTodosEpic,
+  loginWithEmailEpic,
   checkAvailableCountry,
   getMasterDataEpic,
 );

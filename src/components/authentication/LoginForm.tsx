@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {View, TextInput} from 'react-native';
 import {Input, Container} from '..';
 import {Button} from '../Button';
 import {Label} from '../Label';
@@ -11,8 +11,8 @@ interface LoginFormProps {
 }
 
 export const LoginForm = (props: LoginFormProps) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('deevvdd@gmail.com');
+  const [password, setPassword] = useState('123456');
 
   const isValid = (): Boolean => {
     var isValid = true;
@@ -24,6 +24,7 @@ export const LoginForm = (props: LoginFormProps) => {
     }
     return isValid;
   };
+  var passwordRef = React.createRef<TextInput>();
 
   return (
     <Container style={{paddingBottom: 24}}>
@@ -31,11 +32,19 @@ export const LoginForm = (props: LoginFormProps) => {
         <Input
           returnKeyType={'next'}
           onChange={email => setEmail(email.toString())}
+          onSubmitEditing={() => {
+            passwordRef.current.focus();
+          }}
           placeholder={'Email'}
         />
+
         <Input
+          ref={passwordRef}
           returnKeyType={'done'}
           onChange={pass => setPassword(pass.toString())}
+          onSubmitEditing={() => {
+            //api call
+          }}
           placeholder={'Password'}
         />
         <Button

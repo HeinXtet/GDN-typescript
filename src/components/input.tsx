@@ -1,6 +1,13 @@
-import React, {useState} from 'react';
-import {Item, Input as TextInput} from 'native-base';
-import {StyleSheet, ReturnKeyType, KeyboardType} from 'react-native';
+import React, {useState, LegacyRef} from 'react';
+import {Item} from 'native-base';
+import {
+  StyleSheet,
+  ReturnKeyType,
+  KeyboardType,
+  NativeSyntheticEvent,
+  TextInputSubmitEditingEventData,
+  TextInput,
+} from 'react-native';
 import {appFont} from '../styles';
 
 interface InputProps {
@@ -9,36 +16,54 @@ interface InputProps {
   onChange: (text: String) => void;
   isSecureEntry?: boolean;
   keyboardType?: KeyboardType;
+  onSubmitEditing?: (
+    e: NativeSyntheticEvent<TextInputSubmitEditingEventData>,
+  ) => void;
 }
 
-export const Input = (props: InputProps) => {
-  const [isFocus, setFocus] = useState(false);
+export const Input = React.forwardRef(
+  (props: InputProps, ref: LegacyRef<TextInput>) => {
+    const [isFocus, setFocus] = useState(false);
 
-  return (
-    <Item
-      rounded
-      style={[
-        styles.core,
-        {
-          borderColor: !isFocus ? 'gray' : 'white',
-          borderWidth: 1,
-          paddingStart: 8,
-        },
-      ]}>
-      <TextInput
-        returnKeyType={props.returnKeyType}
-        keyboardType={props.keyboardType}
-        secureTextEntry={props.isSecureEntry}
-        placeholder={props.placeholder}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
-        placeholderTextColor={'white'}
-        style={{...appFont, color: 'white'}}
-        onChangeText={props.onChange}
-      />
-    </Item>
-  );
-};
+    const [text, setText] = useState('');
+
+    return (
+      <Item
+        rounded
+        style={[
+          styles.core,
+          {
+            borderColor: !isFocus && text.length == 0 ? 'gray' : 'white',
+            borderWidth: 1,
+            paddingStart: 8,
+          },
+        ]}>
+        <TextInput
+          ref={ref}
+          onSubmitEditing={props.onSubmitEditing}
+          returnKeyType={props.returnKeyType}
+          keyboardType={props.keyboardType}
+          secureTextEntry={props.isSecureEntry}
+          placeholder={props.placeholder}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
+          placeholderTextColor={'white'}
+          style={{
+            ...appFont,
+            width: '100%',
+            paddingLeft: 8,
+            paddingEnd: 8,
+            color: 'white',
+          }}
+          onChangeText={text => {
+            setText(text);
+            props.onChange(text);
+          }}
+        />
+      </Item>
+    );
+  },
+);
 
 const styles = StyleSheet.create({
   core: {

@@ -1,25 +1,64 @@
 import React from 'react';
-import {Container, Button, View} from 'native-base';
+import {Container} from 'native-base';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {NavigationScreenProp} from 'react-navigation';
-import {SafeAreaView, ImageBackground, Image, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  ImageBackground,
+  Image,
+  StyleSheet,
+  Platform,
+} from 'react-native';
 import {Styles, Colors} from '../../../styles/index';
 import {SPLASH_BG, LOGO_WHITE} from '../../../images/index';
-import {LoginForm} from '../../../components/authornication/LoginForm';
-import {SperateOr} from '../../../components/authornication/SperateOr';
-import {FacebookLoginButton} from '../../../components/authornication/FacebookLoginButton';
-import {TernAndConditionButton} from '../../../components/authornication/TermAndConditionButton';
+import {LoginForm} from '../../../components/authentication/LoginForm';
+import {SperateOr} from '../../../components/authentication/SperateOr';
+import {FacebookLoginButton} from '../../../components/authentication/FacebookLoginButton';
+import {TernAndConditionButton} from '../../../components/authentication/TermAndConditionButton';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import crashlytics from '@react-native-firebase/crashlytics';
+import {connect, ConnectedProps} from 'react-redux';
+import {loginAsync} from '../actions';
+import {Loader} from '../../../components';
+import {RootState} from 'typesafe-actions';
+
+interface State {}
+
+const mapStateToProps = (state: RootState) => ({
+  memberData: state.login.memberData,
+  isLoading: state.login.isLoadingAuth,
+  loginError: state.login.authError,
+});
+
+const dispatchProps = {
+  loginWithEmail: loginAsync.request,
+};
+
+const connector = connect(mapStateToProps, dispatchProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
 export interface NavigationProps extends NavigationScreenProp<{}> {
   navigation: NavigationStackProp;
 }
-class Login extends React.Component<NavigationProps> {
+type Props = PropsFromRedux & NavigationProps;
+
+class Login extends React.Component<Props, State> {
+  componentDidUpdate(prevProps: Props) {
+    console.log('didupdate ' + JSON.stringify(this.props));
+  }
+
   renderForm = () => {
     return (
       <LoginForm
         navigationProps={this.props.navigation}
         onPressLogin={(email: string, password: string) => {
+          this.props.loginWithEmail({
+            email,
+            password,
+            device_type: Platform.OS,
+            grant_type: 'password',
+            push_notification_token: '',
+          });
           console.log('call api to login ' + email + ' ' + password);
         }}
       />
@@ -29,34 +68,35 @@ class Login extends React.Component<NavigationProps> {
     crashlytics().log('Testing crash');
     crashlytics().crash();
   }
-  componentDidMount() {
-    setTimeout(() => {
-      this.forceCrash();
-    }, 2000);
-  }
 
   render() {
     return (
-      <KeyboardAwareScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-        }}
-        style={{backgroundColor: Colors.colorPrimary}}
-        overScrollMode="never">
-        <Container>
-          <ImageBackground source={SPLASH_BG} style={Styles.fullScreenStatic} />
-
-          <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
-            {this.renderTopLogo()}
-            <FacebookLoginButton
-              callback={token => console.log('token ' + token)}
+      <Loader isLoading={this.props.isLoading}>
+        <KeyboardAwareScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+          }}
+          style={{backgroundColor: Colors.colorPrimary, flex: 1}}>
+          <Container>
+            <ImageBackground
+              source={SPLASH_BG}
+              style={Styles.fullScreenStatic}
             />
-            {this.renderViewLine()}
-            {this.renderForm()}
-            <TernAndConditionButton isAbsolute label={'T & C Privacy Policy'} />
-          </SafeAreaView>
-        </Container>
-      </KeyboardAwareScrollView>
+            <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+              {this.renderTopLogo()}
+              <FacebookLoginButton
+                callback={token => console.log('token ' + token)}
+              />
+              {this.renderViewLine()}
+              {this.renderForm()}
+              <TernAndConditionButton
+                isAbsolute
+                label={'T & C Privacy Policy'}
+              />
+            </SafeAreaView>
+          </Container>
+        </KeyboardAwareScrollView>
+      </Loader>
     );
   }
 
@@ -76,4 +116,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default connect(mapStateToProps, dispatchProps)(Login);

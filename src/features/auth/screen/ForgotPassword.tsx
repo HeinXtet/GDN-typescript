@@ -9,7 +9,7 @@ class ForgotPassword extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container style={{flex: 1}}>
         <ImageBackground source={SPLASH_BG} style={Styles.fullScreenStatic} />
         <Label
           style={styles.labelInfo}
@@ -17,7 +17,11 @@ class ForgotPassword extends React.Component {
         />
         <Container style={{marginStart: 16, marginEnd: 16}}>
           <Input
+            returnKeyType="done"
             placeholder="Email"
+            onSubmitEditing={() => {
+              alert('forgot password');
+            }}
             onChange={text => (this.email = text.toString())}
           />
 

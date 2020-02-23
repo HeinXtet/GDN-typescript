@@ -8,11 +8,11 @@ import {
 import {Container, Label} from '../../../components';
 import {SPLASH_BG} from '../../../images';
 import {Styles} from '../../../styles';
-import {TernAndConditionButton} from '../../../components/authornication/TermAndConditionButton';
+import {TernAndConditionButton} from '../../../components/authentication/TermAndConditionButton';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {SperateOr} from '../../../components/authornication/SperateOr';
-import {FacebookLoginButton} from '../../../components/authornication/FacebookLoginButton';
-import {SignUpForm} from '../../../components/authornication/SignupForm';
+import {SperateOr} from '../../../components/authentication/SperateOr';
+import {FacebookLoginButton} from '../../../components/authentication/FacebookLoginButton';
+import {SignUpForm} from '../../../components/authentication/SignupForm';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 
 class SignUp extends React.Component {
@@ -35,7 +35,7 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container style={{flex: 1}}>
         <ImageBackground source={SPLASH_BG} style={Styles.fullScreenStatic} />
         <KeyboardAwareScrollView style={{backgroundColor: Colors.colorPrimary}}>
           <Container style={{flex: 1}}>

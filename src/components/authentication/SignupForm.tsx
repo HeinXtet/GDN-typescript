@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {StyleSheet} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {StyleSheet, TextInput} from 'react-native';
 import {Container, Input, Button} from '../index';
 import {View} from 'react-native-animatable';
 import {defaultContainerMargin, margin8, Colors} from '../../styles/index';
@@ -16,11 +16,18 @@ export const SignUpForm = (props: SignUpFormProps) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
+  const emailRef = useRef<TextInput>();
+  const passwordRef = useRef<TextInput>();
+  const confirmPasswordRef = useRef<TextInput>();
+  const phoneRef = useRef<TextInput>();
+
   return (
     <Container style={{flex: 1}}>
       <View style={[defaultContainerMargin]}>
         <Input
+          onSubmitEditing={() => emailRef.current.focus()}
           placeholder="Name"
+          returnKeyType="next"
           onChange={text => {
             setName(text.toString());
           }}
@@ -44,27 +51,39 @@ export const SignUpForm = (props: SignUpFormProps) => {
       </View>
       <View style={[defaultContainerMargin]}>
         <Input
+          ref={emailRef}
+          returnKeyType="next"
+          onSubmitEditing={() => passwordRef.current.focus()}
           placeholder="Email"
           onChange={text => {
             setEmail(text.toString());
           }}
         />
         <Input
+          onSubmitEditing={() => confirmPasswordRef.current.focus()}
+          ref={passwordRef}
           placeholder="Password"
           isSecureEntry
+          returnKeyType="next"
           onChange={text => {
             setPassword(text.toString());
           }}
         />
 
         <Input
+          onSubmitEditing={() => phoneRef.current.focus()}
+          ref={confirmPasswordRef}
           placeholder="ReType Password"
           isSecureEntry
+          returnKeyType="next"
           onChange={text => {
             setConfirmPassword(text.toString());
           }}
         />
         <Input
+          ref={phoneRef}
+          returnKeyType="done"
+          onSubmitEditing={() => alert('api call')}
           placeholder="Phone Number"
           isSecureEntry
           onChange={text => {
