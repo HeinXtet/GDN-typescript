@@ -5,14 +5,14 @@ import {
   StyleSheet,
   Platform,
 } from 'react-native';
-import {Container, Label} from '../../../components';
-import {SPLASH_BG} from '../../../images';
-import {Styles} from '../../../styles';
-import {TernAndConditionButton} from '../../../components/authentication/TermAndConditionButton';
+import {Container, Label} from '../components';
+import {SPLASH_BG} from '../images';
+import {Styles} from '../styles';
+import {TernAndConditionButton} from '../components/authentication/TermAndConditionButton';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {SperateOr} from '../../../components/authentication/SperateOr';
-import {FacebookLoginButton} from '../../../components/authentication/FacebookLoginButton';
-import {SignUpForm} from '../../../components/authentication/SignupForm';
+import {SperateOr} from '../components/authentication/SperateOr';
+import {FacebookLoginButton} from '../components/authentication/FacebookLoginButton';
+import {SignUpForm} from '../components/authentication/SignupForm';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 
 class SignUp extends React.Component {

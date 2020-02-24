@@ -3,7 +3,7 @@ import {
   StackViewTransitionConfigs,
 } from 'react-navigation-stack';
 import React from 'react';
-import {Login, SignUp, ForgotPassword} from '../features';
+import {Login, SignUp, ForgotPassword} from '../screens';
 import {Colors, NavigationStyle} from '../styles';
 
 export const AuthStack = createStackNavigator({

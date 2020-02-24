@@ -5,10 +5,10 @@ import {connect, ConnectedProps} from 'react-redux';
 import {NavigationScreenProp} from 'react-navigation';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {ImageBackground, Animated, StyleSheet, View} from 'react-native';
-import {SPLASH_BG, LOGO_WHITE} from '../../images';
-import {Styles} from '../../styles';
-import {checkAvailableIp, getMasterData} from './actions';
-import {Label} from '../../components';
+import {SPLASH_BG, LOGO_WHITE} from '../images';
+import {Styles} from '../styles';
+import {checkAvailableIp, getMasterData} from '../features/splash/actions';
+import {Label} from '../components';
 
 interface State {
   valueYForLog: Animated.Value;
@@ -43,8 +43,8 @@ class Splash extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    // this.props.getMasterData(undefined, undefined);
-    this.props.navigation.navigate('Login');
+    this.props.getMasterData(undefined, undefined);
+    // this.props.navigation.navigate('Login');
   }
 
   componentDidUpdate(prevProps: Props) {

@@ -1,5 +1,5 @@
 import {Epic} from 'redux-observable';
-import {from, of, concat, merge} from 'rxjs';
+import {of, merge} from 'rxjs';
 import {
   filter,
   switchMap,

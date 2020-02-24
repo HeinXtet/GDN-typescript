@@ -1,8 +1,8 @@
 import React from 'react';
-import {Container, Label, Button, Input} from '../../../components';
+import {Container, Label, Button, Input} from '../components';
 import {ImageBackground, StyleSheet} from 'react-native';
-import {SPLASH_BG} from '../../../images';
-import {Styles, Colors} from '../../../styles';
+import {SPLASH_BG} from '../images';
+import {Styles, Colors} from '../styles';
 
 class ForgotPassword extends React.Component {
   email = '';

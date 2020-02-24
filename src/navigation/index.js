@@ -2,7 +2,7 @@ import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import {Transition} from 'react-native-reanimated';
-import {Splash, Login} from '../features';
+import {Splash, Login} from '../screens';
 import {AuthStack} from './auth-stack';
 
 const AppContainer = createAppContainer(

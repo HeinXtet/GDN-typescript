@@ -1,13 +1,13 @@
 import {combineEpics, Epic} from 'redux-observable';
-import {loadTodosEpic, loginWithEmailEpic} from '../features/auth/epics';
+import {loginWithEmailEpic, signUpWithEmail} from '../features/auth/epics';
 import {
   checkAvailableCountry,
   getMasterDataEpic,
 } from '../features/splash/epics';
 
 export default combineEpics<Epic>(
-  loadTodosEpic,
   loginWithEmailEpic,
+  signUpWithEmail,
   checkAvailableCountry,
   getMasterDataEpic,
 );

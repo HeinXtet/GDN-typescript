@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {Container} from 'native-base';
 import {NavigationStackProp} from 'react-navigation-stack';
 import {NavigationScreenProp} from 'react-navigation';
@@ -9,17 +9,17 @@ import {
   StyleSheet,
   Platform,
 } from 'react-native';
-import {Styles, Colors} from '../../../styles/index';
-import {SPLASH_BG, LOGO_WHITE} from '../../../images/index';
-import {LoginForm} from '../../../components/authentication/LoginForm';
-import {SperateOr} from '../../../components/authentication/SperateOr';
-import {FacebookLoginButton} from '../../../components/authentication/FacebookLoginButton';
-import {TernAndConditionButton} from '../../../components/authentication/TermAndConditionButton';
+import {Styles, Colors} from '../styles/index';
+import {SPLASH_BG, LOGO_WHITE} from '../images/index';
+import {LoginForm} from '../components/authentication/LoginForm';
+import {SperateOr} from '../components/authentication/SperateOr';
+import {FacebookLoginButton} from '../components/authentication/FacebookLoginButton';
+import {TernAndConditionButton} from '../components/authentication/TermAndConditionButton';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import crashlytics from '@react-native-firebase/crashlytics';
 import {connect, ConnectedProps} from 'react-redux';
-import {loginAsync} from '../actions';
-import {Loader} from '../../../components';
+import {loginAsync} from '../features/auth/actions';
+import {Loader} from '../components';
 import {RootState} from 'typesafe-actions';
 
 interface State {}
@@ -69,9 +69,16 @@ class Login extends React.Component<Props, State> {
     crashlytics().crash();
   }
 
-  render() {
+  LoginComponent = () => {
+    const loaderRef = useRef() as React.MutableRefObject<any>;
+
     return (
-      <Loader isLoading={this.props.isLoading}>
+      <Loader
+        showDialog={this.props.loginError != null}
+        isError={this.props.loginError != null}
+        message={this.props.loginError}
+        ref={loaderRef}
+        isLoading={this.props.isLoading}>
         <KeyboardAwareScrollView
           contentContainerStyle={{
             flexGrow: 1,
@@ -98,6 +105,10 @@ class Login extends React.Component<Props, State> {
         </KeyboardAwareScrollView>
       </Loader>
     );
+  };
+
+  render() {
+    return <this.LoginComponent />;
   }
 
   renderViewLine = () => {
