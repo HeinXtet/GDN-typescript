@@ -71,22 +71,27 @@ const getMasterDataEpic: Epic<RootAction, RootAction, RootState, Services> = (
   action$.pipe(
     filter(isActionOf(authAction.getMasterData.request)),
     mergeMap(() =>
-      ajax.getJSON<MasterData>(api.auth.MASTER_DATA_URL, api.auth.header).pipe(
-        flatMap(response => {
-          if (response.errorCode != 0) {
-            return of(authAction.getMasterData.failure(response.message));
-          } else {
-            return merge(
-              of(authAction.getMasterData.success(response)),
-              of(authAction.checkAvailableIp.request(response)),
-            );
-          }
-        }),
-        catchError(e => {
-          console.log('master data error ' + JSON.stringify(e));
-          return of(authAction.getMasterData.failure(e));
-        }),
-      ),
+      ajax
+        .getJSON<MasterData>(
+          api.auth.MASTER_DATA_URL,
+          api.auth.formEncodedHeader,
+        )
+        .pipe(
+          flatMap(response => {
+            if (response.errorCode != 0) {
+              return of(authAction.getMasterData.failure(response.message));
+            } else {
+              return merge(
+                of(authAction.getMasterData.success(response)),
+                of(authAction.checkAvailableIp.request(response)),
+              );
+            }
+          }),
+          catchError(e => {
+            console.log('master data error ' + JSON.stringify(e));
+            return of(authAction.getMasterData.failure(e));
+          }),
+        ),
     ),
   );
 

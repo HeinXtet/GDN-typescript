@@ -8,10 +8,12 @@ export const loginAsync = createAsyncAction(
   'LOGIN_REQUEST',
   'LOGIN_SUCCESS',
   'LOGIN_FAIL',
-)<LoginRequest, MemberData, string>();
+  'LOGIN_CANCEL',
+)<LoginRequest, MemberData, string, undefined>();
 
 export const signUpAsync = createAsyncAction(
   'SIGNUP_REQUEST',
   'SIGNUP_SUCCESS',
   'SIGNUP_FAIL',
-)<SignUpRequest, MemberData, string>();
+  'SIGNUP_CANCEL',
+)<SignUpRequest, MemberData, string, undefined>();

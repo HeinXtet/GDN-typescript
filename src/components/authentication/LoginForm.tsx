@@ -9,6 +9,7 @@ import {isAllValid} from '../../utils/validation';
 interface LoginFormProps {
   onPressLogin: (email: string, password: string) => void;
   navigationProps: NavigationStackProp;
+  cancelLogin: () => void;
 }
 let formValidFileds = {};
 
@@ -31,8 +32,7 @@ export const LoginForm = (props: LoginFormProps) => {
   const submitLogin = () => {
     if (isAllValid(formValidFileds)) {
       console.log('isVaid');
-    } else {
-      console.log('not valid');
+      props.onPressLogin(email, password);
     }
   };
 
@@ -77,12 +77,9 @@ export const LoginForm = (props: LoginFormProps) => {
           backgroundColor={Colors.colorPrimary}
           label="Login"
           onPress={() => {
-            if (isValid()) {
-              submitLogin();
-
-              //props.onPressLogin(email, password);
-              console.log('email ' + email + 'password ' + password);
-            }
+            submitLogin();
+            //props.onPressLogin(email, password);
+            console.log('email ' + email + 'password ' + password);
           }}
         />
       </View>
@@ -99,6 +96,7 @@ export const LoginForm = (props: LoginFormProps) => {
           touchable
           text="Forgot Password"
           onPress={() => {
+            props.cancelLogin();
             props.navigationProps.navigate('ForgotPassword');
           }}
           style={{color: 'white', padding: 8}}
@@ -107,6 +105,7 @@ export const LoginForm = (props: LoginFormProps) => {
           touchable
           text="Sign Up"
           onPress={() => {
+            props.cancelLogin();
             props.navigationProps.navigate('SignUp');
           }}
           style={{color: 'white', padding: 8}}

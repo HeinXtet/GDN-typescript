@@ -8,7 +8,17 @@ var base64 = require('base-64');
 var username = Config.USER_NAME;
 var password = Config.PASSWORD;
 var basicAuth = 'Basic ' + base64.encode(username + ':' + password);
-export const header = {
+export const formEncodedHeader = {
   'Content-Type': 'application/x-www-form-urlencoded',
+  Authorization: basicAuth,
+};
+
+export const jsonHeader = {
+  'Content-Type': 'application/json',
+  Authorization: basicAuth,
+  dataType: 'json',
+};
+
+export const simpleHeader = {
   Authorization: basicAuth,
 };

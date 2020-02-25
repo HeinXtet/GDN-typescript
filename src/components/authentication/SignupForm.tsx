@@ -1,14 +1,15 @@
 import React, {useState, useRef} from 'react';
-import {StyleSheet, TextInput} from 'react-native';
+import {StyleSheet, TextInput, Platform} from 'react-native';
 import {Container, Input, Button} from '../index';
 import {View} from 'react-native-animatable';
 import {defaultContainerMargin, margin8, Colors} from '../../styles/index';
 import {GenderRow} from '../GenderRow';
 import {SignUpRequest} from '../../features/auth/models/request/SignUpRequest';
-import {isEmpty} from 'lodash';
+import {isAllValid} from '../../utils/validation';
 interface SignUpFormProps {
   signUpPressed: (request: SignUpRequest) => void;
 }
+let formValidFileds = {};
 
 export const SignUpForm = (props: SignUpFormProps) => {
   const [name, setName] = useState('');
@@ -22,7 +23,21 @@ export const SignUpForm = (props: SignUpFormProps) => {
   const confirmPasswordRef = useRef<TextInput>();
   const phoneRef = useRef<TextInput>();
 
-  const validFormFields = Array();
+  const submitSignUp = () => {
+    if (isAllValid(formValidFileds)) {
+      console.log('isVaid');
+      let gender = 0 ? 'male' : 'female';
+      props.signUpPressed({
+        email,
+        password,
+        mem_phone: phoneNumber,
+        mem_name: name,
+        mem_gender: gender,
+        push_notification_token: '',
+        device_type: Platform.OS,
+      });
+    }
+  };
 
   return (
     <Container style={{flex: 1}}>
@@ -32,8 +47,8 @@ export const SignUpForm = (props: SignUpFormProps) => {
           onSubmitEditing={() => emailRef.current.focus()}
           placeholder="Name"
           returnKeyType="next"
-          isValid={vaild => {
-            validFormFields['username'] = {isValid: vaild};
+          isValid={isValid => {
+            formValidFileds['username'] = isValid;
           }}
           onChange={text => {
             setName(text.toString());
@@ -61,8 +76,8 @@ export const SignUpForm = (props: SignUpFormProps) => {
           validateType="email"
           ref={emailRef}
           returnKeyType="next"
-          isValid={vaild => {
-            validFormFields['email'] = {isValid: vaild};
+          isValid={isValid => {
+            formValidFileds['email'] = isValid;
           }}
           onSubmitEditing={() => passwordRef.current.focus()}
           placeholder="Email"
@@ -77,8 +92,8 @@ export const SignUpForm = (props: SignUpFormProps) => {
           placeholder="Password"
           isSecureEntry
           returnKeyType="next"
-          isValid={vaild => {
-            validFormFields['password'] = {isValid: vaild};
+          isValid={isValid => {
+            formValidFileds['password'] = isValid;
           }}
           onChange={text => {
             setPassword(text.toString());
@@ -92,8 +107,8 @@ export const SignUpForm = (props: SignUpFormProps) => {
           placeholder="ReType Password"
           isSecureEntry
           returnKeyType="next"
-          isValid={vaild => {
-            validFormFields['password'] = {isValid: vaild};
+          isValid={isValid => {
+            formValidFileds['confirm_password'] = isValid;
           }}
           onChange={text => {
             setConfirmPassword(text.toString());
@@ -106,8 +121,8 @@ export const SignUpForm = (props: SignUpFormProps) => {
           onSubmitEditing={() => alert('api call')}
           placeholder="Phone Number"
           isSecureEntry
-          isValid={vaild => {
-            validFormFields['phone'] = {isValid: vaild};
+          isValid={isValid => {
+            formValidFileds['phone'] = isValid;
           }}
           onChange={text => {
             setPhoneNumber(text.toString());
@@ -118,12 +133,7 @@ export const SignUpForm = (props: SignUpFormProps) => {
           backgroundColor={Colors.colorPrimary}
           label="SignUp"
           onPress={() => {
-            let isNotValid = validFormFields.map(value => {
-              !value.isValid;
-            });
-            if (isNotValid.length === 0) {
-              alert('all valid');
-            }
+            submitSignUp();
           }}
         />
       </View>

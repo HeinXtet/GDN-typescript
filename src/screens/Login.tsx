@@ -32,6 +32,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const dispatchProps = {
   loginWithEmail: loginAsync.request,
+  loginCancel: loginAsync.cancel,
 };
 
 const connector = connect(mapStateToProps, dispatchProps);
@@ -40,16 +41,17 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 export interface NavigationProps extends NavigationScreenProp<{}> {
   navigation: NavigationStackProp;
 }
-type Props = PropsFromRedux & NavigationProps;
+export type LoginProps = PropsFromRedux & NavigationProps;
 
-class Login extends React.Component<Props, State> {
-  componentDidUpdate(prevProps: Props) {
+class Login extends React.Component<LoginProps, State> {
+  componentDidUpdate(prevProps: LoginProps) {
     console.log('didupdate ' + JSON.stringify(this.props));
   }
 
   renderForm = () => {
     return (
       <LoginForm
+        cancelLogin={this.props.loginCancel}
         navigationProps={this.props.navigation}
         onPressLogin={(email: string, password: string) => {
           this.props.loginWithEmail({
@@ -59,7 +61,6 @@ class Login extends React.Component<Props, State> {
             grant_type: 'password',
             push_notification_token: '',
           });
-          console.log('call api to login ' + email + ' ' + password);
         }}
       />
     );
@@ -106,6 +107,11 @@ class Login extends React.Component<Props, State> {
       </Loader>
     );
   };
+
+  componentWillUnmount() {
+    alert('will unmount');
+    this.props.loginCancel(undefined, undefined);
+  }
 
   render() {
     return <this.LoginComponent />;
